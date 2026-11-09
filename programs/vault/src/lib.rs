@@ -21,5 +21,8 @@ pub mod vault {
 
     pub fn deposit(ctx: Context<Deposit>, amount: u64) -> Result<()> {
         ctx.accounts.deposit(amount)
-    }   
+    }
+
+
+   
 }
