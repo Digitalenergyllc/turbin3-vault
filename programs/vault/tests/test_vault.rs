@@ -20,7 +20,7 @@ fn send(svm: &mut LiteSVM, payer: &Keypair, ix: Instruction) {
     let msg = Message::new_with_blockhash(&[ix], Some(&payer.pubkey()), &blockhash);
     let tx = VersionedTransaction::try_new(VersionedMessage::Legacy(msg), &[payer]).unwrap();
     svm.send_transaction(tx).unwrap_or_else(|err| {
-        panic!("tx failed: {err:?}\nlogs: {logs:#?}", logs = err.meta.logs);
+        panic!("tx failed: {err:?}\nlogs: {logs:#?}", logs = err.meta.logs)
     });
 }
 
