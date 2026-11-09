@@ -4,4 +4,6 @@ use anchor_lang::prelude::*;
 pub enum ErrorCode {
     #[msg("Deposit amount must be greater than zero")]
     InvalidAmount,
+    #[msg("Vault does not have enough SOL for this withdrawal")]
+    InsufficientFunds,
 }
