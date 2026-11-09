@@ -10,7 +10,7 @@ vault = "FZbATsaJLeuYmjqC6L4LbJU33fAMX4NLS4vdAdbazyqc"
 
 [provider]
 cluster = "localnet"
-wallet = "~/.config/solana/id.json"
+wallet = "~/.config/solana/turbin3-class.json"
 
 [scripts]
 test = "cargo test"
