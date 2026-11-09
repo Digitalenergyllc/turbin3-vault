@@ -1,17 +1,28 @@
+use crate::{
+    constants::{STATE, VAULT_SEED},
+    state::VaultState,
+};
 use anchor_lang::prelude::*;
-use crate::state::VaultState;
 
 #[derive(Accounts)]
 pub struct Initialize<'info> {
     #[account(mut)]
     pub user: Signer<'info>,
+
     #[account(
-        init, payer = user,
-        space = 8 + VaultState::INIT_SPACE,
-        seeds = [b"state", user.key().as_ref()], bump
+        init,
+        payer = user,
+        seeds = [STATE, user.key().as_ref()],
+        bump,
+        space = VaultState::DISCRIMINATOR.len() + VaultState::INIT_SPACE
     )]
     pub vault_state: Account<'info, VaultState>,
-    #[account(seeds = [b"vault", vault_state.key().as_ref()], bump)]
+
+    #[account(
+        mut,
+        seeds = [VAULT_SEED, user.key().as_ref()],
+        bump,
+    )]
     pub vault: SystemAccount<'info>,
     pub system_program: Program<'info, System>,
 }
